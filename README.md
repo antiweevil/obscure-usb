@@ -29,7 +29,7 @@ bash init.sh
 
 Finally, edit `config_usb.txt`. If you have a BadUSB, insert it in setup mode. Then, store the location of your payload file (the one that will run on the victim) inside `config_usb.txt`. For example:
 ```bash
-echo "/media/antiweevil/A87B-A154/1.txt" > config_usb.txt
+echo "/media/jane_doe/A87B-A154/1.txt" > config_usb.txt
 ```
 
 Otherwise, if you do not have a BadUSB, place the configuration in MANUAL mode.
