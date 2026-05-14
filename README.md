@@ -76,12 +76,22 @@ Once a connection has been established, there are multiple commands that you can
 
 + **Break connection**: Immediately breaks the connection to the target, and removes any Obscure files on the target's machine.
 
+A keylogger also runs on the target's machine while Obscure is active. It can be accessed most easily via the following custom command.
+```shell
+gc c:/win64/log.txt
+```
+
 ## Reconnecting
 
 If at any time you exited, you can return to the session by simply running the program again.
 ```bash
 python3 obscure.py
 ```
+
+## Credits
+
++ **tylerdotrar**: Powershell reverse shell
++ **Pete Hinchley**: Powershell keylogger
 
 ## Disclaimer
 
