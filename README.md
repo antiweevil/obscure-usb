@@ -64,7 +64,7 @@ Once a connection has been established, there are multiple commands that you can
 
 + **Capture screenshot**: Use another TCP listener to retrieve a snapshot of the target's screen. The resulting image is saved to `out/capture.png` and is displayed as a thumbnail on the attacker's device. May take a few seconds to receive fully.
 
-+ **Configure malware**: Run or stop various malware, including Salinewin, Memz, and ButterFlyOnDesktop. These malware may cause irreversibly damage to the target's machine, especially Memz. Use with caution.
++ **Configure malware**: Run or stop various malware, including Salinewin, Memz, and ButterflyOnDesktop. These malware may cause irreversibly damage to the target's machine, especially Memz. Use with caution.
 
 + **Open camera**: Start the Windows camera application. May be combined with the capture screenshot functionality to receive a picture of the target's room.
 
