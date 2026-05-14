@@ -91,7 +91,10 @@ python3 obscure.py
 ## Credits
 
 + **tylerdotrar**: Powershell reverse shell
+    + Available at [rgbwiki](https://rgbwiki.com/Red%20Cell/07.%20Payloads/PowerShell%20Reverse%20Shells/)
+    + The last couple lines of the script were modified to match the structure of the Obscure directory
 + **Pete Hinchley**: Powershell keylogger
+    + Available at [hinchley.net](https://hinchley.net/articles/creating-a-key-logger-via-a-global-system-hook-using-powershell)
 
 ## Disclaimer
 
