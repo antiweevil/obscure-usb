@@ -361,6 +361,7 @@ def create_interface(now_established=False):
             else:
                 print("\n\u001b[34mSelect an action to execute on the target.")
                 print("\u001b[90mType 'exit' or 'back' to quit or go back.\u001b[0m")
+            
             valid_choice = False
             while not valid_choice:
                 choice = input().lower() # User selects an option by number, or types back or exit
