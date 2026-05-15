@@ -41,7 +41,7 @@ def check_for_connection(first_port):
 
 # ——— Create a new session to connect the target to the attacker's machine
 def make_new_session():
-    # ——— Clear previous sessions"""
+    # ——— Clear previous sessions
     run(["tmux","kill-server"], stderr=DEVNULL)
     print(f"{C_MARK} Cleared previous panes.")
 
@@ -275,10 +275,10 @@ def run_command(queued_command):
 
 # ————————————————————————————————————————————————————————— #
 
-# ——— Create an interface for the user to interact with the target"""
+# ——— Create an interface for the user to interact with the target
 def create_interface(now_established=False):
 
-    # ——— Initiate a structure for all user actions"""
+    # ——— Initiate a structure for all user actions
     options = GLOBAL_OPTIONS
 
     # ——— Use print statements and input to create a navigable interface
