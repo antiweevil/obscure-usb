@@ -60,7 +60,7 @@ def make_new_session():
     # ——— Start new sessions
     for port in LOCAL_PORTS:
         run(["tmux", "new-session", "-d", "-s", f"pinggy-tcp-{port}"])
-        run(["tmux", "send-keys", "-t", f"pinggy-tcp-{port}", f"sshpass -p '' ssh -p 443 -R0:localhost:{port} qr+tcp@free.pinggy.io", "ENTER"])
+        run(["tmux", "send-keys", "-t", f"pinggy-tcp-{port}", f"sshpass -p '' ssh -p 443 -o StrictHostKeyChecking=no -R0:localhost:{port} qr+tcp@free.pinggy.io", "ENTER"])
     print(f"{C_MARK} Started pinggy tunnels.")
 
     # ——— Gather and parse tunnel information
@@ -81,7 +81,6 @@ def make_new_session():
         except:
             sleep(1)
     print(f"{C_MARK} Retrieved and parsed tunnel information.")
-    print(middlemen)
 
     # ——— Begin listening on local ports
     for i,port in enumerate(LOCAL_PORTS):
