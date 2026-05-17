@@ -1,23 +1,6 @@
 # obscure-usb
 
-Establish a reverse shell between a Linux machine and Windows victim via a BadUSB. Tested on Debian13 with Seytonic's Malduino 3.
-
-## Prerequisites
-
-First, ensure you have ngrok. It can be installed via the following.
-```bash
-sudo apt update && sudo apt install ngrok
-```
-
-Next, create an account at [ngrok.com](https://ngrok.com) and copy your Authtoken from [the dashboard](https://dashboard.ngrok.com/get-started/your-authtoken).
-
-Save your Authtoken in ngrok's configuration.
-```bash
-ngrok config add-authtoken YOUR_AUTHTOKEN
-```
-
-For ngrok to work properly, you must [add a payment method](https://dashboard.ngrok.com/settings#id-verification). Your card will NOT be charged; it is only required by ngrok to prevent bad actors.
-
+Establish a reverse shell between a Linux machine and Windows victim via a BadUSB. Tested on Debian13 with Seytonic's Malduino 3. Uses [pinggy.io](https://pinggy.io/)'s tunneling service as a middleman to connect the two devices.
 
 ## Installation
 
@@ -30,9 +13,9 @@ bash init.sh
 
 ## Configuration
 
-Finally, edit `usb_config.txt`. If you have a BadUSB, insert it in setup mode. Then, store the location of your payload file (the one that will run on the victim) inside `usb_config.txt`. For example:
+Finally, edit `usb_config.txt`. If you have a BadUSB, insert it in setup mode. Then, store the path of your payload file (the one that will run on the victim) inside `usb_config.txt`. For example:
 ```bash
-echo "/media/jane_doe/A87B-A154/1.txt" > usb_config.txt
+echo "/media/jane/A87B-A154/1.txt" > usb_config.txt
 ```
 
 Otherwise, if you do not have a BadUSB, place the configuration in MANUAL mode.
@@ -49,9 +32,11 @@ Once everything has been configured, you may run the program with the following.
 python3 obscure.py
 ```
 
-Follow and respond to the guided steps and questions. Once your USB has been configured by Obscure, or a custom script has been produced, run the payload on the target machine.
+Once the USB has been configured by Obscure, or a custom script has been produced, run the payload on the target machine.
 
-If everything works correctly, a message stating a received connection should display.
+A message confirming a received connection should display.
+
+Keep in mind the connection is temporary, and will timeout after 60 minutes, as [stated on the tunneling website](https://pinggy.io/).
 
 ## Reverse shell commands
 
