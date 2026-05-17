@@ -16,6 +16,9 @@ Save your Authtoken in ngrok's configuration.
 ngrok config add-authtoken YOUR_AUTHTOKEN
 ```
 
+For ngrok to work properly, you must [add a payment method](https://dashboard.ngrok.com/settings#id-verification). Your card will NOT be charged; it is only required by ngrok to prevent bad actors.
+
+
 ## Installation
 
 To install ObscureUSB, run the following. `init.sh` will install any other needed dependencies.
