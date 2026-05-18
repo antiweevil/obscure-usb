@@ -64,11 +64,6 @@ Once a connection has been established, there are multiple commands that you can
 
 + **Break connection**: Immediately breaks the connection to the target, and removes any Obscure files on the target's machine.
 
-A keylogger also runs on the target's machine while Obscure is active. It can be accessed most easily via the following custom command.
-```shell
-gc c:/win64/log.txt
-```
-
 ## Reconnecting
 
 If at any time you exited, you can return to the session by simply running the program again.
@@ -79,10 +74,10 @@ python3 obscure.py
 ## Credits
 
 + **tylerdotrar**: Powershell reverse shell
-    + Available at [rgbwiki.com](https://rgbwiki.com/Red%20Cell/07.%20Payloads/PowerShell%20Reverse%20Shells/)
-    + The last couple lines of the script were modified to match the structure of the Obscure directory
-+ **Pete Hinchley**: Powershell keylogger
-    + Available at [hinchley.net](https://hinchley.net/articles/creating-a-key-logger-via-a-global-system-hook-using-powershell)
+    + Available at [rgbwiki.com](https://rgbwiki.com/Red%20Cell/07.%20Payloads/PowerShell%20Reverse%20Shells/).
+    + The last couple lines of the script were modified to match the structure of the Obscure directory.
++ **CaliNux**: Script obfuscation
+    + The reverse shell script was obfuscated to lower the risk of AMSI detection when run.
 
 ## Disclaimer
 
