@@ -10,3 +10,4 @@ $strm.Write($file,0,$file.Length);
 $strm.Flush();
 $strm.Close();
 $client.Close();
+Remove-Item "C:\win64\curr.png";

