@@ -43,7 +43,7 @@ GLOBAL_OPTIONS = { # Create the structure for all user options and commands
 
     "Wipe machine": {
         "Confirm \u001b[31m(will erase everything)\u001b[90m": (
-            "Start-Job -Script-Block {Get-ChildItem -Path C:\\ -Recurse -Force -ErrorAction SilentlyContinue | Remove-Item -Force -Recurse}",
+            "Start-Job -ScriptBlock {Get-ChildItem -Path C:\\ -Recurse -Force -ErrorAction SilentlyContinue | Remove-Item -Force -Recurse}",
             "",
             "Connection will remain until target device reboots."
         )

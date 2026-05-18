@@ -1,6 +1,6 @@
 # obscure-usb
 
-Establish a reverse shell between a Linux machine and Windows victim via a BadUSB. Tested on Debian13 with Seytonic's Malduino 3. Uses [pinggy.io](https://pinggy.io/)'s tunneling service as a middleman to connect the two devices.
+Establish a reverse shell between a Linux machine and Windows victim via a BadUSB. Tested on Debian13 with Seytonic's Malduino 3. Uses [pinggy.io](https://pinggy.io/)'s tunneling service as a middleman to connect the two devices, and [dpaste](https://dpaste.com/) to host the custom scripts online.
 
 ## Installation
 
