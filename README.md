@@ -75,9 +75,9 @@ python3 obscure.py
 
 + **tylerdotrar**: Powershell reverse shell
     + Available at [rgbwiki.com](https://rgbwiki.com/Red%20Cell/07.%20Payloads/PowerShell%20Reverse%20Shells/).
-    + The last couple lines of the script were modified to match the structure of the Obscure directory.
 + **CaliNux**: Script obfuscation
-    + The reverse shell script was obfuscated to lower the risk of AMSI detection when run.
+    + Available at [powershellgallery.com](https://www.powershellgallery.com/packages/Invoke-Obfuscation/).
+    + Lowers the risk of AMSI detection when run on the target machine.
 
 ## Disclaimer
 
