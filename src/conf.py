@@ -1,12 +1,14 @@
 import os
 
+# ——— Define global variables
 LOCAL_PORTS = [1336, 1337]
 THIS_DIRECTORY = os.path.dirname(os.path.split(os.path.realpath(__file__))[0])
 C_MARK = "\u001b[32m\u2713\u001b[90m"
 X_MARK = "\u001b[31m\u2717\u001b[90m"
 E_MARK = "\u001b[31m\u203c\u001b[90m"
 
-GLOBAL_OPTIONS = { # Create the structure for all user options and commands
+# ——— Create the structure for all user options and commands
+GLOBAL_OPTIONS = {
     "Create a pop-up": {"TEXT": "Start-Job -ScriptBlock {(New-Object -ComObject Wscript.Shell).Popup('>>TEXT<<',8,'Critical Alert',0x40)}"},
     
     "Type to keyboard": {"TEXT": "Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.SendKeys]::SendWait('>>TEXT<<')"},
