@@ -6,7 +6,7 @@ from time import sleep
 import tempfile
 
 # ——— Configuration and constants
-from conf import *
+from src.conf import *
 global paste0_url
 
 # ——— Print ASCII name for Obscure
@@ -95,7 +95,7 @@ def make_new_session():
     print(f"{C_MARK} Began listening on local ports.")
 
     # ——— Generate first paste
-    with open(f"{THIS_DIRECTORY}/dev/paste_01.txt", "r") as f:
+    with open(f"{THIS_DIRECTORY}/src/txt/paste_01.txt", "r") as f:
         paste1 = f.read()
         f.close()
 
@@ -114,7 +114,7 @@ def make_new_session():
     sleep(1)
 
     # ——— Generate second paste
-    with open(f"{THIS_DIRECTORY}/dev/paste_02.txt", "r") as f:
+    with open(f"{THIS_DIRECTORY}/src/txt/paste_02.txt", "r") as f:
         paste2 = f.read()
         f.close()
 
@@ -133,7 +133,7 @@ def make_new_session():
     sleep(1)
 
     # ——— Generate main paste
-    with open(f"{THIS_DIRECTORY}/dev/paste_00.txt", "r") as f:
+    with open(f"{THIS_DIRECTORY}/src/txt/paste_00.txt", "r") as f:
         paste0 = f.read()
         f.close()
 
@@ -148,15 +148,15 @@ def make_new_session():
     print(f"{C_MARK} Uploaded main dpaste.")
 
     # ——— Write USB scripts
-    with open(f"{THIS_DIRECTORY}/usb_config.txt", "r") as f:
+    with open(f"{THIS_DIRECTORY}/obscure_config.txt", "r") as f:
         config_usb = f.read().strip()
         f.close()
 
-    with open(f"{THIS_DIRECTORY}/dev/manual.txt", "r") as f:
+    with open(f"{THIS_DIRECTORY}/src/txt/manual.txt", "r") as f:
         manual_run = f.read().strip()
         f.close()
 
-    with open(f"{THIS_DIRECTORY}/dev/usb.txt", "r") as f:
+    with open(f"{THIS_DIRECTORY}/src/txt/usb.txt", "r") as f:
         usb_template = f.read()
         f.close()
 

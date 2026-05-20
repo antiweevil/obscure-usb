@@ -1,7 +1,7 @@
 import os
 
 LOCAL_PORTS = [1336, 1337]
-THIS_DIRECTORY = (os.path.split(os.path.realpath(__file__))[0])
+THIS_DIRECTORY = os.path.dirname(os.path.split(os.path.realpath(__file__))[0])
 C_MARK = "\u001b[32m\u2713\u001b[90m"
 X_MARK = "\u001b[31m\u2717\u001b[90m"
 E_MARK = "\u001b[31m\u203c\u001b[90m"

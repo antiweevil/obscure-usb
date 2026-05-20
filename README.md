@@ -13,14 +13,14 @@ bash init.sh
 
 ## Configuration
 
-Finally, edit `usb_config.txt`. If you have a BadUSB, insert it in setup mode. Then, store the path of your payload file (the one that will run on the victim) inside `usb_config.txt`. For example:
+Finally, edit `obscure_config.txt`. If you have a BadUSB, insert it in setup mode. Then, store the path of your payload file (the one that will run on the victim) inside `obscure_config.txt`. For example:
 ```bash
-echo "/media/jane/A87B-A154/1.txt" > usb_config.txt
+echo "/media/jane/A87B-A154/1.txt" > obscure_config.txt
 ```
 
 Otherwise, if you do not have a BadUSB, place the configuration in MANUAL mode.
 ```bash
-echo "MANUAL" > usb_config.txt
+echo "MANUAL" > obscure_config.txt
 ```
 
 Both methods should produce the same results.
