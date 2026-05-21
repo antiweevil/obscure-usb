@@ -103,7 +103,7 @@ def make_new_session():
         run(["tmux", "new-session", "-d", "-s", f"listener-{port}"])
         
         if i == 1: # If the second port, set up listener to capture screenshot
-            run(["tmux", "send-keys", "-t", f"listener-{port}", f"while true; r=$RANDOM; do nc -q 0 -lvnp {port} > {THIS_DIRECTORY}/out/capture_$r.png; feh -x {THIS_DIRECTORY}/out/capture_$r.png --geometry 1200x800+10-10 -. -Z --image-bg black; sleep 1; done", "ENTER"])
+            run(["tmux", "send-keys", "-t", f"listener-{port}", f"while true; r=$RANDOM; do nc -q 0 -lvnp {port} > {THIS_DIRECTORY}/out/capture_$r.png; feh -^ \"Target screen $(date '+%Y-%m-%d %H:%M:%S')\" {THIS_DIRECTORY}/out/capture_$r.png -. -Z; sleep 1; done", "ENTER"])
         
         else: # Otherwise, set up normal listener
             run(["tmux", "send-keys", "-t", f"listener-{port}", f"while true; do nc -lvnp {port}; sleep 1; done", "ENTER"])
