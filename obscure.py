@@ -39,6 +39,13 @@ def check_for_connection(first_port):
 
     return connection_established
 
+def change_configuration():
+    print("\n\u001b[34mEnter the path to the USB payload file, or input MANUAL for manual setup.\u001b[0m")
+    payload_path = input("\u001b[90m> \u001b[0m").strip()
+    with open(f"{THIS_DIRECTORY}/obscure_config.txt", "w") as f:
+        f.write(payload_path)
+    print(f"{C_MARK} Configuration updated.")
+
 # ——— Create a new session to connect the target to the attacker's machine
 def make_new_session():
     # ——— Clear previous sessions
@@ -46,9 +53,12 @@ def make_new_session():
     print(f"{C_MARK} Cleared previous panes.")
 
     # ——— Ask to start new session
-    print("\u001b[33mInitiate a new session?\u001b[90m (Y/N)\u001b[0m", end=" ")
+    print("\u001b[33mInitiate a new session? Or change configuration?\u001b[90m (Y/N/C)\u001b[0m", end=" ")
     response = input().strip().lower()
-    if response != "y":
+    if response == "c":
+        change_configuration()
+        sys.exit()
+    elif response != "y":
         print(f"{X_MARK} Session initiation cancelled.")
         sys.exit()
     print("\u001b[90m",end="")
