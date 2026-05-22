@@ -96,7 +96,7 @@ python3 obscure.py
 
 ## 💎 Quality
 
-The contents of this repository were written mainly by hand, and AI was primarily only used in the case of an occasional inline suggestion to save time writing. All code has been tested and checked for bugs, though report any you may find in the [issues](https://github.com/antiweevil/obscure-usb/issues) tab.
+The contents of this repository were written mainly by hand, though AI was used in the case of occasional inline suggestions to save time writing. All code has been tested and checked for bugs, though please report any you may find in the [issues](https://github.com/antiweevil/obscure-usb/issues) tab.
 
 ## ⚠️ Disclaimer
 
