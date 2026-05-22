@@ -4,7 +4,7 @@
 
 Establish a reverse shell between a Linux machine and Windows victim via a BadUSB. Tested on Debian13 with Seytonic's Malduino 3. Uses [pinggy.io](https://pinggy.io/)'s tunneling service as a middleman to connect the two devices, and [dpaste](https://dpaste.com/) to host the custom scripts online.
 
-## Installation
+## 🌐 Installation
 
 To install ObscureUSB, run the following. `init.sh` will install any other needed dependencies.
 ```bash
@@ -13,7 +13,7 @@ cd obscure-usb
 bash init.sh
 ```
 
-## Configuration
+## 🛠️ Configuration
 
 Finally, edit `obscure_config.txt`. If you have a BadUSB, insert it in setup mode. Then, store the path of your payload file (the one that will run on the victim) inside `obscure_config.txt`. For example:
 ```bash
@@ -27,7 +27,7 @@ echo "MANUAL" > obscure_config.txt
 
 Both methods should produce the same results.
 
-## Usage
+## 🪡 Usage
 
 Once everything has been configured, you may run the program with the following.
 ```bash
@@ -40,7 +40,7 @@ A message confirming a received connection should display.
 
 Keep in mind the connection is temporary, and will timeout after 60 minutes, as [stated on the tunneling website](https://pinggy.io/).
 
-## Reverse shell commands
+## 🔗 Reverse shell commands
 
 Once a connection has been established, there are multiple commands that you can execute on the target's device.
 
@@ -77,14 +77,14 @@ Once a connection has been established, there are multiple commands that you can
 + **Break connection**
     + Immediately break the connection to the target, and remove any Obscure files remaining on the target's machine.
 
-## Reconnecting
+## 🔌 Reconnecting
 
 If at any time you exited, you can return to the session by simply running the program again.
 ```bash
 python3 obscure.py
 ```
 
-## Credits
+## 👋 Credits
 
 + **tylerdotrar**: Powershell reverse shell
     + Available at [rgbwiki.com](https://rgbwiki.com/Red%20Cell/07.%20Payloads/PowerShell%20Reverse%20Shells/).
@@ -94,6 +94,6 @@ python3 obscure.py
 + **setiawanap**: Duck icon in the header
     + Available at [flaticon.com](https://www.flaticon.com/free-icon/duck_6023094).
 
-## Disclaimer
+## ⚠️ Disclaimer
 
 Never use this program or any of its components on machines you do not own or have explicit permission to use. I am not responsible for any damages.
