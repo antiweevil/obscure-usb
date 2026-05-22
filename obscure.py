@@ -7,7 +7,6 @@ import tempfile
 
 # ——— Configuration and constants
 from src.conf import *
-global paste0_url
 
 # ——— Print ASCII name for Obscure
 def print_name():
@@ -28,7 +27,7 @@ def check_for_connection(first_port):
     pane_capture = None
     try:
         pane_capture = check_output(["tmux", "capture-pane", "-pt", f"listener-{first_port}"], stderr=DEVNULL).decode("utf-8")
-    except:
+    except Exception:
         return False
 
     last_listening = pane_capture.lower().rfind("listening on")
@@ -86,15 +85,21 @@ def make_new_session():
         try:
             middlemen = {}
 
+            should_bail = False
             for port in LOCAL_PORTS: # Read tunnel information corresponding to each local port
                 tunnel_info = check_output(["tmux", "capture-pane", "-pt", f"pinggy-tcp-{port}"], stderr=DEVNULL).decode("utf-8")
                 
-                if("tcp://" in tunnel_info):
+                if "tcp://" in tunnel_info:
                     middlemen[str(port)] = tunnel_info.split("tcp://")[1].split("\n")[0] # Extract the public URL for the tunnel
+                elif "Internal server error" in tunnel_info: # Check for internal server errors at pinggy
+                    should_bail = True
             
             if len(middlemen) == len(LOCAL_PORTS):
                 tunnels_exist = True
-        except:
+            elif should_bail:
+                print(f"{E_MARK}\u001b[31m Internal server error at pinggy.io. Bailing!")
+                sys.exit()
+        except Exception:
             sleep(1)
     print(f"{C_MARK} Retrieved and parsed tunnel information.")
 
