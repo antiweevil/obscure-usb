@@ -98,6 +98,6 @@ python3 obscure.py
 
 The contents of this repository were written mainly by hand, though AI was used in the case of occasional inline suggestions to save time writing. All code has been tested and checked for bugs, though please report any you may find in the [issues](https://github.com/antiweevil/obscure-usb/issues) tab.
 
-## ⚠️ Disclaimer
+## ‼️ Disclaimer
 
 Never use this program or any of its components on machines you do not own or have explicit permission to use. I am not responsible for any damages.
