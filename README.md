@@ -42,27 +42,38 @@ Keep in mind the connection is temporary, and will timeout after 60 minutes, as 
 
 Once a connection has been established, there are multiple commands that you can execute on the target's device.
 
-+ **Create a pop-up**: Displays a pop-up on the target's machine with a custom message.
++ **Create a pop-up**
+    + Displays a pop-up on the target's machine with a custom message.
 
-+ **Type to keyboard**: Presses certain keys to spell out a message or run a Windows shortcut. For example, `{ENTER}` returns to the next line and `^{w}` closes the current tab. Learn more [here](https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.sendkeys).
++ **Type to keyboard**
+    + Presses certain keys to spell out a message or run a Windows shortcut. For example, `{ENTER}` returns to the next line and `^{w}` closes the current tab. Learn more [here](https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.sendkeys).
 
-+ **Jitter cursor rapidly**: Move the target's cursor randomly and uncontrollably for a few seconds. Stops automatically after a certain time frame.
++ **Jitter cursor rapidly**
+    + Move the target's cursor randomly and uncontrollably for a few seconds. Stops automatically after a short time frame.
 
-+ **Manage files**: Lock or unlock the target's filesystem by exploiting a vulnerability in File Explorer. Disables many functions of the computer while locked, such as pressing the Windows key.
++ **Manage files**
+    + Lock or unlock the target's filesystem by temporarily altering File Explorer. Disables many functions of the computer while locked, such as pressing the Windows key.
 
-+ **Capture screenshot**: Use another TCP listener to retrieve a snapshot of the target's screen. The resulting image is saved to `out/capture.png` and is displayed as a thumbnail on the attacker's device. May take a few seconds to receive fully.
++ **Capture screenshot**
+    + Use another TCP listener to retrieve a snapshot of the target's screen. The resulting image is saved to `out/` as a `.png` and is displayed as a thumbnail on the attacker's device. May take a few seconds to receive fully.
 
-+ **Configure malware**: Run or stop various malware, including Salinewin, Memz, and ButterflyOnDesktop. These malware may cause irreversibly damage to the target's machine, especially Memz. Use with caution.
++ **Configure malware**
+    + Install, run, or stop various malware, including Salinewin, Memz, and ButterflyOnDesktop. These malware may cause irreversible damage to the target's machine—especially Memz. Use with caution.
 
-+ **Open camera**: Start the Windows camera application. May be combined with the capture screenshot functionality to receive a picture of the target's room.
++ **Open camera**
+    + Start the Windows camera application. May be combined with the capture screenshot functionality to receive a picture of the target and/or the target's room.
 
-+ **Wipe machine**: Irreversibly destroy most contents on the target's hard drive. Use with caution.
++ **Wipe machine**
+    + Irreversibly destroy most contents on the target's hard drive. Use with caution.
 
-+ **Shut down machine**: Immediately breaks the connection to the target, removing any remaining Obscure files, and shuts down the target's computer.
++ **Shut down machine**
+    + Immediately break the connection to the target, removing any remaining Obscure files, and shut down the target's computer.
 
-+ **Run custom command**: Execute a command directly to the reverse shell established between the attacker and target. A brief output of the reverse shell is shown after running.
++ **Run custom command**
+    + Execute a command directly to the reverse shell established between the attacker and target. A brief output of the reverse shell is shown after running.
 
-+ **Break connection**: Immediately breaks the connection to the target, and removes any Obscure files on the target's machine.
++ **Break connection**
+    + Immediately break the connection to the target, and remove any Obscure files remaining on the target's machine.
 
 ## Reconnecting
 
