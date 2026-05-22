@@ -91,6 +91,8 @@ python3 obscure.py
 + **CaliNux**: Script obfuscation
     + Available at [powershellgallery.com](https://www.powershellgallery.com/packages/Invoke-Obfuscation/).
     + Lowers the risk of AMSI detection when run on the target machine.
++ **setiawanap**: Duck icon in the header
+    + Available at [flaticon.com](https://www.flaticon.com/free-icon/duck_6023094).
 
 ## Disclaimer
 
