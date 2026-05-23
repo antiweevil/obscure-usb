@@ -198,7 +198,7 @@ def make_new_session():
                 successfully_wrote = True # Successfully wrote to USB without error, exit loop
                 continue
 
-            except Exception as e: # Failed to write to USB
+            except Exception: # Failed to write to USB
                 if error_count_write > 0:
                     print("\033[A\033[K",end="")
                 
@@ -206,10 +206,10 @@ def make_new_session():
                 print(f"{X_MARK} Error writing to USB... trying again. [{error_count_write}]")
                 
                 if error_count_write >= error_count_eject:
-                    print(f"{X_MARK} Failed to write to USB after {error_count_eject} attempts.")
+                    print(f"{X_MARK} Failed to write to USB after {error_count_eject} attempts.\nMaybe check the path listed in \u001b[0mobscure_config.txt\u001b[90m?")
                     sys.exit() # Exit if too many failed attempts to write to USB
     
-            sleep(2)
+            sleep(1.25)
 
         print(f"{C_MARK} Scripts wrote to USB.")
         print(
