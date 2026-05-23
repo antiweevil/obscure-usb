@@ -86,19 +86,24 @@ def make_new_session():
         try:
             middlemen = {}
 
-            should_bail = False
+            bail_msg = None
             for port in LOCAL_PORTS: # Read tunnel information corresponding to each local port
                 tunnel_info = check_output(["tmux", "capture-pane", "-pt", f"pinggy-tcp-{port}"], stderr=DEVNULL).decode("utf-8")
                 
                 if "tcp://" in tunnel_info:
                     middlemen[str(port)] = tunnel_info.split("tcp://")[1].split("\n")[0] # Extract the public URL for the tunnel
                 elif "Internal server error" in tunnel_info: # Check for internal server errors at pinggy
-                    should_bail = True
+                    bail_msg = "SERVER_FAIL"
+                elif "failure in" in tunnel_info: # Check for failures in tunnel establishment
+                    bail_msg = "TUNNEL_FAIL"
             
             if len(middlemen) == len(LOCAL_PORTS):
                 tunnels_exist = True
-            elif should_bail:
+            elif bail_msg == "SERVER_FAIL":
                 print(f"{E_MARK}\u001b[31m Internal server error at pinggy.io. Bailing!")
+                sys.exit()
+            elif bail_msg == "TUNNEL_FAIL":
+                print(f"{E_MARK}\u001b[31m Failed to establish tunnel at pinggy.io. Maybe check your network? Bailing!")
                 sys.exit()
         except Exception:
             sleep(1)
