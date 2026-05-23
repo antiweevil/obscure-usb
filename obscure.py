@@ -16,6 +16,7 @@ def print_name():
 if os.geteuid() == 0:
     print("\u001b[31mDo not run as root!")
     sys.exit()
+
 run(["clear"])
 print_name()
 print("\u001b[34mAuthenticating...\033[0m")
@@ -231,15 +232,17 @@ def make_new_session():
     # ——— Wait for connection
     print("\u001b[33mWaiting for connection to target...\u001b[90m")
 
+    # ——— Loop until connection info is found in tmux pane, indicating a successful connection from the target
     connection_established = False
-    while not connection_established: # Loop until connection info is found in tmux pane, indicating a successful connection from the target
+    while not connection_established:
         pane_capture = check_output(["tmux", "capture-pane", "-pt", f"listener-{first_port}"]).decode("utf-8")
         if "connection received" in pane_capture.lower():
             connection_established = True
             continue
         sleep(1)
 
-    create_interface(True) # Once connection is established, create interface for user to interact with target
+    # ——— Once connection is established, create interface for user to interact with target
+    create_interface(True)
 
 # ————————————————————————————————————————————————————————— #
 
