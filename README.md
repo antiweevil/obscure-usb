@@ -13,6 +13,8 @@ cd obscure-usb
 bash init.sh
 ```
 
+If you have git installed, you may also update the directory with `git pull`.
+
 ## 🛠️ Configuration
 
 Finally, edit `obscure_config.txt`. If you have a BadUSB, insert it in setup mode. Then, store the path of your payload file (the one that will run on the victim) inside `obscure_config.txt`. For example:
