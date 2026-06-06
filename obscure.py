@@ -214,7 +214,7 @@ def make_new_session():
                     continue
                 
                 except: # Attempt alternative way of writing -- maybe they are using Termux?
-                    k = check_output(f"sudo [ -f '{config_usb}' ] && echo 'y' || echo 'n'", shell=True).decode("utf-8").strip() # Check if the USB is inserted
+                    k = check_output(f"su -c  \"[ -f '{config_usb}' ] && echo 'y' || echo 'n'\"", shell=True).decode("utf-8").strip() # Check if the USB is inserted
                     if k == "n":
                         raise Exception("USB not found")
                     run(f"sudo cp out/tmp.txt {config_usb}", shell=True) # Copy temporary file to USB with superuser permissions
