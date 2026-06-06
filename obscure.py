@@ -206,32 +206,34 @@ def make_new_session():
 
         while not successfully_wrote:
             try:
-                try: # Attempt normal way of writing
-                    with open(f"{config_usb}", "w") as f:
-                        f.write(usb_template.replace(">>URL<<", paste0_url)) # Write to USB
-                    
-                    successfully_wrote = True # Successfully wrote to USB without error, exit loop
-                    continue
+                # Attempt normal way of writing
+                with open(f"{config_usb}", "w") as f:
+                    f.write(usb_template.replace(">>URL<<", paste0_url)) # Write to USB
                 
-                except: # Attempt alternative way of writing -- maybe they are using Termux?
+                successfully_wrote = True # Successfully wrote to USB without error, exit loop
+                continue
+
+            except Exception: # Failed to write to USB
+
+                try: # Attempt alternative way of writing -- maybe they are using Termux?
                     k = check_output(f"sudo [ -f '{config_usb}' ] && echo 'y' || echo 'n'", shell=True).decode("utf-8").strip() # Check if the USB is inserted
                     if k == "n":
                         raise Exception("USB not found")
                     run(f"sudo cp out/tmp.txt {config_usb}", shell=True) # Copy temporary file to USB with superuser permissions
                     successfully_wrote = True # Successfully wrote to USB without error, exit loop
                     continue
-
-            except Exception: # Failed to write to USB
-                if error_count_write > 0:
-                    print("\033[A\033[K",end="")
                 
-                error_count_write += 1
-                print(f"{X_MARK} Error writing to USB... trying again. [{error_count_write}]")
-                
-                if error_count_write >= error_count_eject:
-                    print(f"{X_MARK} Failed to write to USB after {error_count_eject} attempts.\nMaybe check the path listed in \u001b[0mobscure_config.txt\u001b[90m?")
-                    sys.exit() # Exit if too many failed attempts to write to USB
-    
+                except Exception: # Failed alternative way of writing as well, likely due to USB not being properly inserted
+                    if error_count_write > 0:
+                        print("\033[A\033[K",end="")
+                    
+                    error_count_write += 1
+                    print(f"{X_MARK} Error writing to USB... trying again. [{error_count_write}]")
+                    
+                    if error_count_write >= error_count_eject:
+                        print(f"{X_MARK} Failed to write to USB after {error_count_eject} attempts.\nMaybe check the path listed in \u001b[0mobscure_config.txt\u001b[90m?")
+                        sys.exit() # Exit if too many failed attempts to write to USB
+        
             sleep(1.25)
 
         print(f"{C_MARK} Scripts wrote to USB.")
