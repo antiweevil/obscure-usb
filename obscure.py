@@ -32,9 +32,10 @@ def check_for_connection(first_port):
         return False
 
     last_listening = pane_capture.lower().rfind("listening on")
-    last_connection = pane_capture.lower().rfind("connection received")
+    last_connection1 = pane_capture.lower().rfind("connection received")
+    last_connection2 = pane_capture.lower().rfind("connection from")
 
-    if last_listening <= last_connection and pane_capture is not None: # Ensure that a connection is still ongoing
+    if last_listening <= (last_connection1 + last_connection2) and pane_capture is not None: # Ensure that a connection is still ongoing
         connection_established = True
 
     return connection_established
@@ -69,9 +70,12 @@ def make_new_session():
     print("\u001b[90m",end="")
 
     # ——— Allow ports on local firewall
-    for port in LOCAL_PORTS:
-        check_output(["sudo", "ufw", "allow", str(port)], stderr=DEVNULL)
-    print(f"{C_MARK} Modified local firewall.")
+    try:
+        for port in LOCAL_PORTS:
+            check_output(["sudo", "ufw", "allow", str(port)], stderr=DEVNULL)
+        print(f"{C_MARK} Modified local firewall.")
+    except Exception:
+        print(f"{E_MARK} Could not modify local firewall. Skipping!")
 
     # ——— Start new sessions
     for port in LOCAL_PORTS:
@@ -241,7 +245,7 @@ def make_new_session():
     connection_established = False
     while not connection_established:
         pane_capture = check_output(["tmux", "capture-pane", "-pt", f"listener-{first_port}"]).decode("utf-8")
-        if "connection received" in pane_capture.lower():
+        if "connection received" in pane_capture.lower() or "connection from" in pane_capture.lower():
             connection_established = True
             continue
         sleep(1)
