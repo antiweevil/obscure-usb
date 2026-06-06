@@ -75,7 +75,7 @@ def make_new_session():
             check_output(["sudo", "ufw", "allow", str(port)], stderr=DEVNULL)
         print(f"{C_MARK} Modified local firewall.")
     except Exception:
-        print(f"{E_MARK} Could not modify local firewall. Skipping!")
+        print(f"{E_MARK} Could not modify local firewall. Continuing anyways!")
 
     # ——— Start new sessions
     for port in LOCAL_PORTS:
@@ -199,13 +199,27 @@ def make_new_session():
         successfully_wrote = False
         error_count_write = 0
         error_count_eject = 10
+
+        run("touch out/tmp.txt", shell=True) # Create temporary file
+        with open(f"out/tmp.txt", "w") as f:
+            f.write(usb_template.replace(">>URL<<", paste0_url)) # Write to temporary file
+
         while not successfully_wrote:
             try:
-                with open(f"{config_usb}", "w") as f:
-                    f.write(usb_template.replace(">>URL<<", paste0_url)) # Write to USB
+                try: # Attempt normal way of writing
+                    with open(f"{config_usb}", "w") as f:
+                        f.write(usb_template.replace(">>URL<<", paste0_url)) # Write to USB
+                    
+                    successfully_wrote = True # Successfully wrote to USB without error, exit loop
+                    continue
                 
-                successfully_wrote = True # Successfully wrote to USB without error, exit loop
-                continue
+                except: # Attempt alternative way of writing -- maybe they are using Termux?
+                    k = check_output(f"sudo [ -f '{config_usb}' ] && echo 'y' || echo 'n'", shell=True).decode("utf-8").strip() # Check if the USB is inserted
+                    if k == "n":
+                        raise Exception("USB not found")
+                    run(f"sudo cp out/tmp.txt {config_usb}", shell=True) # Copy temporary file to USB with superuser permissions
+                    successfully_wrote = True # Successfully wrote to USB without error, exit loop
+                    continue
 
             except Exception: # Failed to write to USB
                 if error_count_write > 0:
